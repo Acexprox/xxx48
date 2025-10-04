@@ -1,0 +1,136 @@
+/* Video Demo Button Animations */
+
+/* Play Icon Wrapper */
+.play-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+}
+
+/* Ripple Wave Animation - Compact and clean circular waves */
+@keyframes ripple-wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* Wave ripple effect - Professional blue-purple gradient */
+.play-pulse {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px solid #3b82f6;
+  animation: ripple-wave 2s ease-out infinite;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Create multiple ripple waves using pseudo elements */
+.play-pulse::before,
+.play-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid #8b5cf6;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.25);
+}
+
+.play-pulse::before {
+  animation: ripple-wave 2s ease-out 0.4s infinite;
+  border-color: #6366f1;
+}
+
+.play-pulse::after {
+  animation: ripple-wave 2s ease-out 0.8s infinite;
+  border-color: #8b5cf6;
+}
+
+/* Gentle bounce animation for the Play icon with color */
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes icon-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.8));
+  }
+}
+
+.play-icon {
+  animation: gentle-bounce 2s ease-in-out infinite, icon-glow 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  color: #3b82f6;
+  stroke-width: 2.5;
+}
+
+/* Enhanced hover effects for the button */
+.video-demo-button:hover .play-icon {
+  animation: none;
+  transform: scale(1.3) translateX(2px);
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 1));
+}
+
+.video-demo-button:hover .play-pulse {
+  animation: pulse-ring 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-width: 4px;
+  opacity: 1;
+}
+
+/* Colorful gradient glow on hover */
+.video-demo-button:hover {
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.4),
+    0 0 40px rgba(168, 85, 247, 0.3),
+    0 10px 30px -5px rgba(147, 51, 234, 0.3);
+}
+
+/* Active state - when clicking */
+.video-demo-button:active {
+  transform: scale(0.98);
+}
+
+/* Ensure button stays relative for absolute positioning */
+.video-demo-button {
+  overflow: hidden;
+}
+
+/* Button styling - clean with no animations */
+.video-demo-button {
+  border-width: 2.5px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .play-pulse,
+  .play-icon {
+    animation: none !important;
+  }
+  
+  .video-demo-button:hover .play-icon {
+    transform: scale(1.1);
+  }
+}
